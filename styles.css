@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #f0eeea;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  cursor: default;
+  position: relative;
+}
+
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#search-bar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: rgba(180, 178, 174, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 40px;
+  padding: 10px 16px 10px 24px;
+  width: 420px;
+  max-width: 90vw;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  transition: background 0.3s;
+}
+
+#search-bar:hover {
+  background: rgba(180, 178, 174, 0.7);
+}
+
+#search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+  letter-spacing: 0.02em;
+}
+
+#search-input::placeholder {
+  color: #666;
+}
+
+#search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+#search-btn:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+#image-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#connection-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.node-card {
+  position: absolute;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: auto;
+  cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  will-change: left, top, opacity, transform;
+}
+
+.node-card.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.node-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.node-label {
+  position: absolute;
+  background: rgba(180, 120, 90, 0.88);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%) translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  text-transform: capitalize;
+  will-change: left, top, opacity, transform;
+}
+
+.node-label.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.connection-line {
+  stroke: rgba(80, 75, 70, 0.25);
+  stroke-width: 0.8;
+  fill: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.connection-line.visible {
+  opacity: 1;
+}
